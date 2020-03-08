@@ -51,6 +51,12 @@ OR
 
 nltk package will be automatically downloaded at your first run.
 
+## Optional
+    # you will need to write your own dictionary processor
+    dictionary_override = custom_cmu(path)
+    
+    # This will use the custom dictionary
+    g2p = G2p(cmu_override=dictionary_override)
 
 ## Usage
 
