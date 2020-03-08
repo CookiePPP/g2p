@@ -78,6 +78,7 @@ class G2p(object):
         
         if cmu_override:
             self.cmu = cmu_override
+            print('Custom Dictionary Loaded')
         else:
             self.cmu = cmudict.dict()
         self.load_variables()
