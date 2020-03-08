@@ -78,9 +78,10 @@ class G2p(object):
         
         if cmu_override:
             self.cmu = cmu_override
-            print('Custom Dictionary Loaded')
+            print('Custom Dictionary Loaded.')
         else:
             self.cmu = cmudict.dict()
+            print('Using nltk CMUDict.')
         self.load_variables()
         self.homograph2features = construct_homograph_dictionary()
 
