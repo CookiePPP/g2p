@@ -49,7 +49,16 @@ def construct_homograph_dictionary():
 #     return text.split()
 
 class G2p(object):
-    def __init__(self):
+    def __init__(self, cmu_override=None):
+        """
+        accepts cmu_override:
+            must be in dict format to array of pronounciations e.g
+            cmu_override = {
+                'a': [['AH0'], ['EY1']],
+                'aancor': [['AA1', 'N', 'K', 'AO2', 'R']],
+            }
+            etc.
+        """
         super().__init__()
         self.graphemes = ["<pad>", "<unk>", "</s>"] + list("abcdefghijklmnopqrstuvwxyz")
         self.phonemes = ["<pad>", "<unk>", "<s>", "</s>"] + ['AA0', 'AA1', 'AA2', 'AE0', 'AE1', 'AE2', 'AH0', 'AH1', 'AH2', 'AO0',
@@ -66,8 +75,11 @@ class G2p(object):
 
         self.p2idx = {p: idx for idx, p in enumerate(self.phonemes)}
         self.idx2p = {idx: p for idx, p in enumerate(self.phonemes)}
-
-        self.cmu = cmudict.dict()
+        
+        if cmu_override:
+            self.cmu = cmu_override
+        else:
+            self.cmu = cmudict.dict()
         self.load_variables()
         self.homograph2features = construct_homograph_dictionary()
 
